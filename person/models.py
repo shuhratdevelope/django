@@ -6,7 +6,7 @@ class Person(models.Model):
     content = models.TextField(blank=True)
     creatd_ad = models.DateTimeField(auto_now_add=True)
     update_ad = models.DateTimeField(auto_now=True)
-    is_poblshd = models.BooleanField()
+    is_poblshd = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', models.PROTECT)
 
     def __str__(self):
