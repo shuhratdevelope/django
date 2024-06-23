@@ -14,16 +14,16 @@ from .serializers import Poestserializers
 class ListPoet(APIView):
     def get(self, request):
         lst = Person.objects.all().values()
-        return Response({'Teacher':list(lst)})
+        return Response({'Teacher': Poestserializers(lst, many=True).data})
 
 
     def post(self,requests):
         posts = Person.objects.create(
-            name = requests.data['name'],
-            content = requests.data[' content'],
-            cat_id = requests.data['cat_id'],
+             name = requests.data['name'],
+             content = requests.data['content'],
+             cat_id = requests.data['cat_id'],
         )
-        return Response({'posts': model_to_dict(posts)})
+        return Response({'posts': Poestserializers(posts).data})
 
 
 
