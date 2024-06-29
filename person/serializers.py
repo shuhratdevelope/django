@@ -14,6 +14,19 @@ class Poestserializers(serializers.Serializer):
 
 
 
+    def create(self, validated_data):
+        return Person.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.content = validated_data.get("content", instance.content)
+        instance.update_ad = validated_data.get("update_ad", instance.update_ad)
+        instance.cat_id = validated_data.get("cat_id", instance.cat_id)
+        instance.save()
+        return instance
+
+
+
 
 
 
